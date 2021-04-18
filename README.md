@@ -10,9 +10,15 @@ First you need to register an account, and then you will be able to click the na
 
 ## Tools
 
-Technology stack: MongoDB, Python, HTML, CSS, Javascript, and Bootstrap 4.
+Frontend: HTML5, CSS3, Javascript, and Bootstrap 4.
 
-The web application is mainly built with Flask, a Python-based microframework. The python packages used in the development include:
+Backend: Python (the backend is mainly built with Flask, a Python-based microframework).
+
+Database: MongoDB
+
+Information Visualization: Python
+
+The Python packages used in the development include:
 
 - Flask 
 - Jinja2 

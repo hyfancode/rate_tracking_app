@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container border rounded p-5 my-5" id="register">
+    <h3 class="text-center mb-5">Sign up</h3>
+
+    <form method="post">
+        <div class="form-group pb-2">
+            <label for="username">Username</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+            </div>
+        </div>
+
+        <div class="form-group pb-4">
+            <label for="password">Password</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-key"></i>
+                    </span>
+                </div>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-success btn-block btn-lg">
+    </form>
+</div>
+{% endblock %}

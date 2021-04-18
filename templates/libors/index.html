@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-4">
+    <label> Select a Libor:</label>
+    <select class="form-control" id='libor_types'>
+        <option value="overnight">Overnight</option>
+        <option value="1-week">1 Week</option>
+        <option value="1-month">1 Month</option>
+        <option value="3-months">3 Month</option>
+        <option value="6-months">6 Month</option>
+        <option value="12-months">12 Month</option>
+    </select>
+</div>
+
+<div class="chart" id="libor_charts">
+    <script>
+        const graphs = {{ plot | safe}};
+        Plotly.newPlot('libor_charts', graphs, {
+            xaxis: {
+                title: 'Date',
+                automargin: true,
+            },
+            yaxis: {
+                title: 'Percent',
+                automargin: true
+            },
+            showlegend: true,
+        },
+            {
+                responsive: true
+            })
+    </script>
+</div>
+
+
+<section>
+    <br>
+    <h3 class="text-center my-3">Overnight London Interbank Offered Rate</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="libor-header text-center text-white h5">Date</th>
+                <th scope="col" class="libor-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for libor in libor_overnight %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{libor.date}}</td>
+                <td class="text-center">{{libor.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://www.global-rates.com/en/interest-rates/libor/american-dollar/usd-libor-interest-rate-overnight.aspx">Source</a>
+    </div>
+    <br>
+
+    <h3 class="text-center my-3">1-Week London Interbank Offered Rate</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="libor-header text-center text-white h5">Date</th>
+                <th scope="col" class="libor-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for libor in libor_1_week %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{libor.date}}</td>
+                <td class="text-center">{{libor.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://www.global-rates.com/en/interest-rates/libor/american-dollar/usd-libor-interest-rate-1-week.aspx">Source</a>
+    </div>
+    <br>
+
+    <h3 class="text-center my-3">1-Month London Interbank Offered Rate</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="libor-header text-center text-white h5">Date</th>
+                <th scope="col" class="libor-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for libor in libor_1_month %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{libor.date}}</td>
+                <td class="text-center">{{libor.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://www.global-rates.com/en/interest-rates/libor/american-dollar/usd-libor-interest-rate-1-month.aspx">Source</a>
+    </div>
+    <br>
+
+    <h3 class="text-center my-3">3-Month London Interbank Offered Rate</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="libor-header text-center text-white h5">Date</th>
+                <th scope="col" class="libor-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for libor in libor_3_months %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{libor.date}}</td>
+                <td class="text-center">{{libor.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://www.global-rates.com/en/interest-rates/libor/american-dollar/usd-libor-interest-rate-3-months.aspx">Source</a>
+    </div>
+    <br>
+
+    <h3 class="text-center my-3">6-Month London Interbank Offered Rate</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="libor-header text-center text-white h5">Date</th>
+                <th scope="col" class="libor-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for libor in libor_6_months %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{libor.date}}</td>
+                <td class="text-center">{{libor.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://www.global-rates.com/en/interest-rates/libor/american-dollar/usd-libor-interest-rate-6-months.aspx">Source</a>
+    </div>
+    <br>
+
+    <h3 class="text-center my-3">12-Month London Interbank Offered Rate</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="libor-header text-center text-white h5">Date</th>
+                <th scope="col" class="libor-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for libor in libor_12_months %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{libor.date}}</td>
+                <td class="text-center">{{libor.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://www.global-rates.com/en/interest-rates/libor/american-dollar/usd-libor-interest-rate-12-months.aspx">Source</a>
+    </div>
+</section>
+{% endblock %}

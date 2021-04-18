@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+	<br>
+	<h3 class="text-center my-3">Latest 3-Month COFI Rate</h3>
+	<table class="table table-hover table-bordered">
+		<thead>
+			<tr>
+				<th scope="col" class="cofi-header text-center text-white h5">Cash</th>
+				<th scope="col" class="cofi-header text-center text-white h5">Rate</th>
+			</tr>
+		</thead>
+
+		{% for cofi in cofis %}
+		<tbody>
+			<tr>
+				<td class="text-center">{{cofi.name}}</td>
+				<td class="text-center">{{cofi.rate}}</td>
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+
+	<div class="d-flex flex-row-reverse">
+		<a target="_blank" class="btn btn-outline-info" href="https://www.farmermac2.com/">Source</a>
+	</div>
+	<br>
+</section>
+{% endblock %}

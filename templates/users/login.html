@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container border rounded p-5 my-5" id="login">
+    <h3 class="text-center mb-5">Log In</h3>
+
+    <form method="post">
+        <div class="form-group pb-2">
+            <label for="username">Username</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+            </div>
+        </div>
+
+        <div class="form-group pb-4">
+            <label for="password">Password</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-key"></i>
+                    </span>
+                </div>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-primary btn-block btn-lg">
+        <p class="text-center m-3">Not a member? <a class="text-primary"
+                href="{{ url_for('users.register_user') }}">Register</a></p>
+    </form>
+
+</div>
+{% endblock %}

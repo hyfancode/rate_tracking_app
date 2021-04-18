@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chart" id="prime_rate_charts">
+    <script>
+        const graphs = {{ plot | safe}};
+        Plotly.newPlot('prime_rate_charts', graphs, {
+            xaxis: {
+                title: 'Date',
+                automargin: true,
+            },
+            yaxis: {
+                title: 'Percent',
+                automargin: true
+            },
+            showlegend: true,
+        },
+            {
+                responsive: true
+            })
+    </script>
+</div>
+
+<section>
+    <br>
+    <h3 class="text-center my-3">Prime Rate</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="prime-header text-center text-white  h5">Date</th>
+                <th scope="col" class="prime-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for prime_rate in prime_rates %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{ prime_rate.date }}</td>
+                <td class="text-center">{{ prime_rate.rate }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info" href="https://www.hsh.com/indices/prime-rate.html">Source</a>
+    </div>
+    <br>
+</section>
+{% endblock %}

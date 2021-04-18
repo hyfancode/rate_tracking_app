@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chart" id="prime_rate_charts">
+    <script>
+        const graphs = {{ plot | safe}};
+        Plotly.newPlot('prime_rate_charts', graphs, {
+            xaxis: {
+                title: 'Month',
+                automargin: true,
+                tickformat: "%b, %Y"
+            },
+            yaxis: {
+                title: 'Index Value',
+                automargin: true
+            },
+            showlegend: true,
+        },
+            {
+                responsive: true
+            })
+    </script>
+</div>
+
+<section>
+    <br>
+    <h3 class="text-center my-3">MIRS Transition Index</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="mirs-header text-center text-white h5">Month</th>
+                <th scope="col" class="mirs-header text-center text-white h5">Index Value</th>
+            </tr>
+        </thead>
+
+        {% for mirs in mirses %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{mirs.date}}</td>
+                <td class="text-center">{{mirs.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://www.fhfa.gov/DataTools/Downloads/Pages/Monthly-Interest-Rate-Data.aspx">Source</a>
+    </div>
+    <br>
+</section>
+{% endblock %}

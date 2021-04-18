@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-4">
+    <label> Select a Treasury:</label>
+    <select class="form-control" id='treasury_types'>
+        <option value="1_year">1 Year</option>
+        <option value="2_year">2 Year</option>
+        <option value="3_year">3 Year</option>
+        <option value="5_year">5 Year</option>
+        <option value="7_year">7 Year</option>
+        <option value="10_year">10 Year</option>
+    </select>
+</div>
+
+<div class="chart" id="treasury_charts">
+    <script>
+        const graphs = {{ plot | safe}};
+        Plotly.newPlot('treasury_charts', graphs, {
+            xaxis: {
+                title: 'Date',
+                automargin: true,
+            },
+            yaxis: {
+                title: 'Percent',
+                automargin: true
+            },
+            showlegend: true,
+        },
+            {
+                responsive: true
+            })
+    </script>
+</div>
+
+<section>
+    <br>
+    <h3 class="text-center my-3">1-Year Treasury</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="treasury-header text-center text-white h5">Date</th>
+                <th scope="col" class="treasury-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for treasury in treasury_1_year %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{treasury.date}}</td>
+                <td class="text-center">{{treasury.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://ycharts.com/indicators/1_year_treasury_rate">Source</a>
+    </div>
+    <br>
+
+    <h3 class="text-center my-3">2-Year Treasury</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="treasury-header text-center text-white h5">Date</th>
+                <th scope="col" class="treasury-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for treasury in treasury_2_year %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{treasury.date}}</td>
+                <td class="text-center">{{treasury.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://ycharts.com/indicators/2_year_treasury_rate">Source</a>
+    </div>
+
+    <br>
+    <h3 class="text-center my-3">3-Year Treasury</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="treasury-header text-center text-white h5">Date</th>
+                <th scope="col" class="treasury-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for treasury in treasury_3_year %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{treasury.date}}</td>
+                <td class="text-center">{{treasury.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://ycharts.com/indicators/3_year_treasury_rate">Source</a>
+    </div>
+    <br>
+
+    <h3 class="text-center my-3">5-Year Treasury</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="treasury-header text-center text-white h5">Date</th>
+                <th scope="col" class="treasury-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for treasury in treasury_5_year %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{treasury.date}}</td>
+                <td class="text-center">{{treasury.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://ycharts.com/indicators/5_year_treasury_rate">Source</a>
+    </div>
+
+    <br>
+    <h3 class="text-center my-3">7-Year Treasury</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="treasury-header text-center text-white h5">Date</th>
+                <th scope="col" class="treasury-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+        {% for treasury in treasury_7_year %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{treasury.date}}</td>
+                <td class="text-center">{{treasury.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://ycharts.com/indicators/7_year_treasury_rate">Source</a>
+    </div>
+    <br>
+
+    <h3 class="text-center my-3">10-Year Treasury</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="treasury-header text-center text-white h5">Date</th>
+                <th scope="col" class="treasury-header text-center text-white h5">Rate</th>
+            </tr>
+        </thead>
+
+        {% for treasury in treasury_10_year %}
+        <tbody>
+            <tr>
+                <td class="text-center">{{treasury.date}}</td>
+                <td class="text-center">{{treasury.rate}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="https://ycharts.com/indicators/10_year_treasury_rate">Source</a>
+    </div>
+
+</section>
+{% endblock %}

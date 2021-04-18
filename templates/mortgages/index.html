@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <br>
+    <h3 class="text-center my-3">Mortgage Rate</h3>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" class="mortgage-header text-center text-white h5">Date</th>
+                <th scope="col" class="mortgage-header text-center text-white h5">Name</th>
+                <th scope="col" class="mortgage-header text-center text-white h5">30-Yr FRM</th>
+                <th scope="col" class="mortgage-header text-center text-white h5">15-Yr FRM</th>
+                <th scope="col" class="mortgage-header text-center text-white h5">5/1-Yr ARM</th>
+            </tr>
+        </thead>
+
+        {% for mortgage in mortgages%}
+        <tbody>
+            <tr>
+                <td class="text-center">{{mortgage.date}}</td>
+                <td class="text-center">{{mortgage.name}}</td>
+                <td class="text-center">{{mortgage.frm_30yr}}</td>
+                <td class="text-center">{{mortgage.frm_15yr}}</td>
+                <td class="text-center">{{mortgage.frm_5yr}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex flex-row-reverse">
+        <a target="_blank" class="btn btn-outline-info"
+            href="http://www.freddiemac.com/pmms/pmms_archives.html">Source</a>
+    </div>
+    <br>
+</section>
+{% endblock %}

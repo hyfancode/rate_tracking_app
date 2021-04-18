@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+notes.md
+uwsgi.ini
+update_rates.py

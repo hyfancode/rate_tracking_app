@@ -1,4 +1,4 @@
-body.home {
+#bg-home {
 	height: 100vh;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../image/plant.jpg");
 	background-size: cover;
@@ -14,10 +14,6 @@ body.home {
 
 #author {
 	color: grey;
-}
-
-.jumbotron {
-	background-color: #1f4068;
 }
 
 .libor-header {

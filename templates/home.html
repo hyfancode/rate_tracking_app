@@ -1,19 +1,18 @@
-{% extends "base.html" %}
+{% extends "base_home.html" %}
 
 
 {% block content %}
 
-<body class="home">
-    <div class="mt-5">
-        <h1 class="d-inline text-white">Rate Tracking Service </h1>
+<div class="mt-5">
+    <h1 class="d-inline text-white">Rate Tracking Service </h1>
 
-        <p class="lead mt-4 text-white">Stock markets and bond markets typically move in opposite directions. In early 2021, as the U.S. 10-Year Treasury Yields rose on expectations of an economic recovery accompanied by climbing inflation, the stock markets fell sharply. Therefore, tracking the essential indexes and rates is more important than ever.</p>
+    <p class="lead mt-4 text-white">Stock markets and bond markets typically move in opposite directions. In early 2021, as the U.S. 10-Year Treasury Yields rose on expectations of an economic recovery accompanied by climbing inflation, the stock markets fell sharply. Therefore, tracking the essential indexes and rates is more important than ever.</p>
 
-        <p class="lead mb-5 text-white">This web application is built to collect rates from public websites and automatically update the data periodically. Users can easily find the rates they need and save time on searching different sites. Feel free to register an account to view all the rates. It is 100% free!</p>
+    <p class="lead mb-5 text-white">This web application is built to collect rates from public websites and automatically update the data periodically. Users can easily find the rates they need and save time on searching different sites. Feel free to register an account to view all the rates. It is 100% free!</p>
 
-        <a href="{{ url_for('users.login_user') }}" class="btn btn-primary mr-4">Log in</a>
-        <a href="{{ url_for('users.register_user') }}" class="btn btn-success">Register</a>
-    </div>
-    <p class="text-right" id="author">&copy 2021 hyfan</p>
-</body>
+    <a href="{{ url_for('users.login_user') }}" class="btn btn-primary mr-4">Log in</a>
+    <a href="{{ url_for('users.register_user') }}" class="btn btn-success">Register</a>
+</div>
+<p class="text-right" id="author">&copy 2021 hyfan</p>
+
 {% endblock %}

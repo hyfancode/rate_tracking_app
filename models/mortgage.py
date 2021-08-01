@@ -1,8 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from uuid import uuid4
-from datetime import datetime
+from common.data_collection import DataCollection
 from typing import Dict
 from models.model import Model
 
@@ -22,29 +18,9 @@ class Mortgage(Model):
     @classmethod
     def load_rates(cls):
         """
-        Load mprtgages.
+        Load mortgages.
         """
-        url = 'http://www.freddiemac.com/pmms/pmms_archives.html'
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        data = soup.find_all(class_="text-center")
-
-        dates = [datetime.strptime(a.get_text().strip(), '%B %d, %Y').strftime(
-            '%m/%d/%Y') for a in soup.find_all(class_="weight-bold")]
-
-        # Clean the data.
-        results = []
-        pattern = re.compile(r'\d+\.\d+')
-        for d in data:
-            text = str(d).strip()
-            if '.' in text:
-                results.append(pattern.search(text).group())
-            elif 'N/A' in text:
-                results.append('N/A')
-            else:
-                pass
-
-        rates = [results[x:x+3] for x in range(0, len(results), 3)]
+        dates, rates = DataCollection.collect_mortgage()
 
         # Create mortgage instance for each row.
         for i, rate in enumerate(rates, start=1):

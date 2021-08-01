@@ -1,7 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from uuid import uuid4
+from common.data_collection import DataCollection
 from datetime import datetime
 from pytz import timezone
 from typing import Dict
@@ -22,17 +19,7 @@ class Cofi(Model):
         """
         Load Cost of Fund Index.
         """
-        url = 'https://www.farmermac2.com/'
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        data = soup.find_all(class_="row cofi-ann")
-
-        # Find and clean names
-        names = re.findall(r'[A-Z].*:', str(data))
-        names_format = [name[:-1].replace('&amp;', '&') for name in names]
-
-        # Find rates
-        rates = re.findall(r'\d+\.\d+%', str(data))
+        names_format, rates = DataCollection.collect_cofi()
 
         for name, rate in zip(names_format, rates):
             cofi = cls(name, datetime.now(

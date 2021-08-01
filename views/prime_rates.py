@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template
 from datetime import datetime
 from models.prime_rate import PrimeRate
-from models.user.decorator import requires_login
 
 
 prime_rate_blueprint = Blueprint("prime_rates", __name__)  # file name

@@ -4,4 +4,4 @@ __pycache__/
 notes.md
 uwsgi.ini
 update_rates.py
-home_backup.html
+data_collection.py

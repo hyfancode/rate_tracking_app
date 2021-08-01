@@ -1,8 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from uuid import uuid4
-from datetime import datetime
+from common.data_collection import DataCollection
 from typing import Dict
 from models.model import Model
 
@@ -21,18 +17,7 @@ class Mirs(Model):
         """
         Load MIRS transition indexes.
         """
-        url = 'https://www.fhfa.gov/DataTools/Downloads/Pages/Monthly-Interest-Rate-Data.aspx'
-
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        data = soup.find_all(
-            class_=['ms-rteTableOddRow-4', 'ms-rteTableEvenRow-4'])
-
-        dates = re.findall(r'[A-Z][a-z]+ 202\d{1}', str(data))
-        dates_format = [datetime.strptime(
-            date, '%B %Y').strftime('%m/%Y') for date in dates]
-
-        rates = re.findall(r'\d+\.\d+', str(data))[:len(dates)]
+        dates_format, rates = DataCollection.collect_mirs()
 
         for date, rate in zip(dates_format, rates):
             mirs = cls('MIRS Transition Index', date, rate)

@@ -1,8 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from uuid import uuid4
-from datetime import datetime
+from common.data_collection import DataCollection
 from typing import Dict
 from models.model import Model
 
@@ -21,17 +17,7 @@ class PrimeRate(Model):
         """
         Loan prime rates.
         """
-        url = 'https://www.hsh.com/indices/prime-rate.html'
-
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        text = str(soup.find_all(class_='prime-data')[0])
-
-        dates = re.findall(r'\d{2}-[a-zA-z]{3}-\d{2}', text)
-        format_dates = [datetime.strptime(
-            date, '%d-%b-%y').strftime('%m/%d/%Y') for date in dates]
-
-        rates = re.findall(r'\d+\.\d+%', text)
+        format_dates, rates = DataCollection.collect_prime_rate()
 
         for date, rate in zip(format_dates, rates):
             prime_rate = cls('prime_rate', date, rate)

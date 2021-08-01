@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request
 from datetime import datetime
 from models.libor import Libor
-from models.user.decorator import requires_login
 
 
 libor_blueprint = Blueprint("libors", __name__)
@@ -12,7 +11,7 @@ def index():
     """
     Sort libors and integrate the Jinja2 template engine with the app.
     """
-    NUM_OF_DAY = 15  # Only present latest 15 rates.
+    DAYS = 15  # Only present latest 15 rates.
 
     libor_plot = Libor.create_plot('overnight')  # Default plot
 
@@ -45,12 +44,12 @@ def index():
             raise NameError('The libor name is invalid.')
 
     return render_template("libors/index.html",
-                           libor_overnight=libor_overnight[:NUM_OF_DAY],
-                           libor_1_week=libor_1_week[:NUM_OF_DAY],
-                           libor_1_month=libor_1_month[:NUM_OF_DAY],
-                           libor_3_months=libor_3_months[:NUM_OF_DAY],
-                           libor_6_months=libor_6_months[:NUM_OF_DAY],
-                           libor_12_months=libor_12_months[:NUM_OF_DAY],
+                           libor_overnight=libor_overnight[:DAYS],
+                           libor_1_week=libor_1_week[:DAYS],
+                           libor_1_month=libor_1_month[:DAYS],
+                           libor_3_months=libor_3_months[:DAYS],
+                           libor_6_months=libor_6_months[:DAYS],
+                           libor_12_months=libor_12_months[:DAYS],
                            plot=libor_plot)
 
 

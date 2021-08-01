@@ -17,10 +17,10 @@ app.config.update(ADMIN=os.environ.get('ADMIN'))
 
 @app.route('/')
 def home():
-    '''
+    """
     Go to the home page.
-    '''
-    return render_template("home.html")
+    """
+    return render_template("home.html", home_page=True)
 
 
 app.register_blueprint(libor_blueprint, url_prefix='/libors')
